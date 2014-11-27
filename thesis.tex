@@ -1,0 +1,78 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{thesis}
+\usepackage{graphicx,float,amsmath,epstopdf,multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm,bottom=2.5cm]{geometry}
+
+\newcommand{\thesistitle}{This is a title}
+\newcommand{\thesisauthor}{Who Am I}
+\newcommand{\programname}{Bioengineering Graduate Program}
+\newcommand{\departmentname}{Division of Biomedical Engineering}
+\newcommand{\thesisdate}{November 2014}
+\newcommand{\signdate}{November 2014}
+\newcommand{\thesisdegree}{PhD}
+\newcommand{\supervisorinfo}{Prof. ONE, Thesis Supervisor \\ Department of Electronic and Computer Engineering \\ Prof. TWO, Thesis Co-Supervisor \\ Department of Electronic and Computer Engineering}
+\newcommand{\depheadinfo}{Prof. BIG \\ Program Director, Bioengineering Graduate Program \\ Head, Division of Biomedical Engineering}
+
+
+\begin{document}
+
+\pagenumbering{roman}
+\pagestyle{plain}
+\setcounter{page}{1}
+\addcontentsline{toc}{chapter}{Title Page}
+\input{1_title}
+
+\newpage
+\addcontentsline{toc}{chapter}{Authorization Page}
+\input{2_authorization}
+
+\newpage
+\addcontentsline{toc}{chapter}{Signature Page}
+\input{3_signature}
+
+\newpage
+\addcontentsline{toc}{chapter}{Acknowledgments}
+\input{4_acknowledgement}
+
+\newpage
+\addcontentsline{toc}{chapter}{Table of Contents}
+\tableofcontents
+
+\newpage
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\newpage
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\newpage
+\addcontentsline{toc}{chapter}{Abstract}
+\input{abstract}
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{plain}
+\setcounter{page}{1}
+\input{chapter1}
+\input{chapter2}
+\input{chapter3}
+\input{chapter4}
+
+\newpage
+\addcontentsline{toc}{chapter}{References}
+\input{reference}
+
+\newpage
+\addcontentsline{toc}{chapter}{Appendix}
+\appendix
+\input{appendix1}
+
+\newpage
+\addcontentsline{toc}{chapter}{Publications}
+\appendix
+\input{publication}
+
+\end{document}

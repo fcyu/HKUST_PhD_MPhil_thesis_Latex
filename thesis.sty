@@ -1,0 +1,241 @@
+\ProvidesPackage{thesis}
+
+\brokenpenalty=10000
+
+%set line spacing
+\renewcommand{\baselinestretch}{1.5}
+
+%for compatibility with WP2LATEX
+\newcommand{\nwln}{\vspace{\baselineskip}}
+
+\newcommand{\namelistlabel}[1]{\mbox{#1}\hfil}
+\newenvironment{namelist}[1]{%
+\begin{list}{}
+   {
+        \let\makelabel\namelistlabel
+        \settowidth{\labelwidth}{#1}
+        \setlength{\leftmargin}{1.1\labelwidth}
+   }
+}{%
+\end{list}}
+
+\newenvironment{descit}[1]{
+        \setlength{\baselineskip}{1.1pc}
+        \begin{quote}
+                \underline{\em #1\/}:}
+        {\end{quote}
+        \setlength{\baselineskip}{1.2pc}
+}
+
+% the following is suitable for 1.2 line spacing
+\def\aftersection{
+    \vspace{-0.85cm} {\noindent \rule{\textwidth}{0.75mm}} \\}
+\def\aftersubsection{
+    \vspace{-0.88cm} {\noindent \rule{\textwidth}{0.4mm}} \\}
+
+%forcing the display of word "Chapter"
+\def\@chapapp{Chapter}
+
+\def\ps@headings{
+   \let\@mkboth\markboth
+   \def\@oddfoot{\hfil}
+   \def\@evenfoot{\hfil}
+   \def\@oddhead{
+    {\it \@chapapp\ \thechapter\ \  \chaptername} \hfil \rm\thepage}
+   \def\@evenhead{
+    {\it \@chapapp\ \thechapter\  \ \chaptername} \hfil \rm\thepage}
+}
+
+\def\@makechapterhead#1{
+ \gdef\chaptername{#1}
+ \vspace*{30pt}
+ {\parindent 0pt \raggedright
+  \ifnum \c@secnumdepth >\m@ne
+   \LARGE {\flushright {\bf \@chapapp{} \thechapter}}
+  \par
+  \vskip 20pt \fi
+  \Huge \bf
+  #1 \par
+  \nobreak
+  \vskip 30pt}
+}
+
+\def\l@chapter#1#2{\pagebreak[3]
+ \vskip 1.0em plus 1pt \@tempdima 1.5em \begingroup
+ \parindent \z@ \rightskip \@pnumwidth
+ \parfillskip -\@pnumwidth
+ \bf \leavevmode #1\hfil \hbox to\@pnumwidth{\hss #2}\par
+ \endgroup
+}
+
+\def\@xfloat#1[#2]{\ifhmode \@bsphack\@floatpenalty -\@Mii\else
+   \@floatpenalty-\@Miii\fi\def\@captype{#1}\ifinner
+      \@parmoderr\@floatpenalty\z@
+    \else\@next\@currbox\@freelist{\@tempcnta\csname ftype@#1\endcsname
+       \multiply\@tempcnta\@xxxii\advance\@tempcnta\sixt@@n
+       \@tfor \@tempa :=#2\do
+                        {\if\@tempa h\advance\@tempcnta \@ne\fi
+                         \if\@tempa t\advance\@tempcnta \tw@\fi
+                         \if\@tempa b\advance\@tempcnta 4\relax\fi
+                         \if\@tempa p\advance\@tempcnta 8\relax\fi
+         }\global\count\@currbox\@tempcnta}\@fltovf\fi
+    \global\setbox\@currbox\vbox\bgroup
+    \def\baselinestretch{1}\@normalsize
+    \boxmaxdepth\z@
+    \hsize\columnwidth \@parboxrestore
+}
+
+\long\def\@footnotetext#1{\insert\footins{\def\baselinestretch{1}\footnotesize
+    \interlinepenalty\interfootnotelinepenalty
+    \splittopskip\footnotesep
+    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
+    \hsize\columnwidth \@parboxrestore
+   \edef\@currentlabel{\csname p@footnote\endcsname\@thefnmark}\@makefntext
+    {\rule{\z@}{\footnotesep}\ignorespaces
+      #1\strut}}
+}
+
+\def\title#1{\gdef\@title{#1}}
+\def\author#1{\gdef\@author{#1}}
+\def\degree#1{\gdef\@degree{#1}}
+\def\dept#1{\gdef\@dept{#1}}
+\def\degree#1{\def\a{#1}
+   \if\a 1\gdef\@degree{Doctor~of~Philosophy}\fi
+   \if\a 2\gdef\@degree{Master~of~Philosophy}\fi
+   \if\a 3\gdef\@degree{Master~of~Science}\fi
+}
+\def\submitdate#1{\gdef\@submitdate{#1}}
+\def\@submitdate{\ifcase\the\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space \number\the\year \space}
+
+\ifnum\month=12
+    \@tempcnta=\year \advance\@tempcnta by 1
+    \edef\@copyrightyear{\number\the\@tempcnta}
+\else
+    \def\@copyrightyear{\number\the\year}
+\fi
+
+\newif\ifcopyright \newif\iffigures \newif\iftables
+\copyrightfalse \figuresfalse \tablesfalse
+
+\font\titlefont=cmcsc10 at 22pt
+\def\titlepge{
+    \thispagestyle{empty}
+    \null\vskip0.5in
+    \begin{center}
+        \begin{LARGE}
+          \thesistitle
+        \end{LARGE}
+    \vfill
+    \vspace{20mm}
+
+    by
+
+    \vspace{4mm}
+
+    \thesisauthor \\
+    \vfill
+    \vspace{20mm}
+
+    A Thesis Submitted to\\
+    The Hong Kong University of Science and Technology \\
+    in Partial Fulfillment of the Requirements for\\
+    the Degree of \thesisdegree \\
+        in \departmentname \\
+    \vfill \vfill
+    \thesisdate
+        \vfill
+  \end{center}
+
+    \vfill
+}  % titlepge
+
+
+\def\beforepreface{
+        \pagenumbering{roman}
+        \pagestyle{plain}
+        \titlepge
+        \ifcopyright\copyrightpage\fi
+}
+
+\def\afterpreface{
+        \newpage\tableofcontents\newpage
+        \iftables\listoftables\newpage\fi
+        \iffigures\listoffigures\newpage\fi
+        \pagenumbering{arabic}
+        %\pagestyle{plain}
+        \pagestyle{headings}
+}
+
+\def\beforebibliography{
+    \addcontentsline{toc}{chapter}{Bibliography}
+    \def\thechapter{\ }
+    \def\chaptername{Bibliography}
+
+\def\ps@headings{
+   \let\@mkboth\markboth
+   \def\@oddfoot{\hfil}
+   \def\@evenfoot{\hfil}
+   \def\@oddhead{
+    \hspace{-1.7cm}
+    {\noindent \rule[-2mm]{17.7cm}{0.5mm}}
+    \hspace{-17.7cm}
+    {\it  Bibliography} \hfil \rm\thepage}
+   \def\@evenhead{
+    {\it  Bibliography} \hfil \rm\thepage}
+}
+}
+
+% the following defines the \newtheorem command and
+% is copied from /usr/local/tex/lib/inputs/latex.tex
+% modifed by smlau to make the theorem text using normal
+% font rather than italics
+\def\newtheorem#1{\@ifnextchar[{\@othm{#1}}{\@nthm{#1}}}
+
+\def\@nthm#1#2{%
+\@ifnextchar[{\@xnthm{#1}{#2}}{\@ynthm{#1}{#2}}}
+
+\def\@xnthm#1#2[#3]{\expandafter\@ifdefinable\csname #1\endcsname
+{\@definecounter{#1}\@addtoreset{#1}{#3}%
+\expandafter\xdef\csname the#1\endcsname{\expandafter\noexpand
+  \csname the#3\endcsname \@thmcountersep \@thmcounter{#1}}%
+\global\@namedef{#1}{\@thm{#1}{#2}}\global\@namedef{end#1}{\@endtheorem}}}
+
+\def\@ynthm#1#2{\expandafter\@ifdefinable\csname #1\endcsname
+{\@definecounter{#1}%
+\expandafter\xdef\csname the#1\endcsname{\@thmcounter{#1}}%
+\global\@namedef{#1}{\@thm{#1}{#2}}\global\@namedef{end#1}{\@endtheorem}}}
+
+%% RmS 92/01/10: check for existence of theorem environment #2
+\def\@othm#1[#2]#3{%
+  \@ifundefined{c@#2}{\@latexerr{No theorem environment `#2' defined}\@eha}%
+  {\expandafter\@ifdefinable\csname #1\endcsname
+  {\global\@namedef{the#1}{\@nameuse{the#2}}%
+\global\@namedef{#1}{\@thm{#2}{#3}}%
+\global\@namedef{end#1}{\@endtheorem}}}}
+
+\def\@thm#1#2{\refstepcounter
+    {#1}\@ifnextchar[{\@ythm{#1}{#2}}{\@xthm{#1}{#2}}}
+
+\def\@xthm#1#2{\@begintheorem{#2}{\csname the#1\endcsname}\ignorespaces}
+\def\@ythm#1#2[#3]{\@opargbegintheorem{#2}{\csname
+       the#1\endcsname}{#3}\ignorespaces}
+
+%DEFAULT VALUES
+\def\@thmcounter#1{\noexpand\arabic{#1}}
+\def\@thmcountersep{.}
+%deleted September 2, 1986 MDK
+%\def\@makethmnumber#1#2{\bf #1 #2:}
+
+%% RmS 91/08/14 Moved \it after \item to make it work with NFSS
+% smlau - remove the \it command
+%\def\@begintheorem#1#2{\trivlist \item[\hskip \labelsep{\bf #1\ #2}]\it}
+\def\@begintheorem#1#2{\trivlist \item[\hskip \labelsep{\bf #1\ #2}]}
+\def\@opargbegintheorem#1#2#3{\trivlist
+      \item[\hskip \labelsep{\bf #1\ #2\ (#3)}]\it}
+\def\@endtheorem{\endtrivlist}
+%
+% end of \newtheorem command
+%
