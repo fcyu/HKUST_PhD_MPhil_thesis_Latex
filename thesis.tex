@@ -4,6 +4,9 @@
 \usepackage{graphicx,float,amsmath,epstopdf,multirow}
 \usepackage[hidelinks]{hyperref}
 \usepackage[left=2.5cm,top=2.5cm,right=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{Abbreviations}
 
 \newcommand{\thesistitle}{This is a title}
 \newcommand{\thesisauthor}{Who Am I}
@@ -12,8 +15,10 @@
 \newcommand{\thesisdate}{November 2014}
 \newcommand{\signdate}{November 2014}
 \newcommand{\thesisdegree}{PhD}
-\newcommand{\supervisorinfo}{Prof. ONE, Thesis Supervisor \\ Department of Electronic and Computer Engineering \\ Prof. TWO, Thesis Co-Supervisor \\ Department of Electronic and Computer Engineering}
+\newcommand{\supervisorinfo}{Prof. ONE, Thesis Supervisor \\ Department of Electronic and Computer Engineering}
+\newcommand{\cosupervisorinfo}{Prof. TWO, Thesis Co-Supervisor \\ Department of Electronic and Computer Engineering}
 \newcommand{\depheadinfo}{Prof. BIG \\ Program Director, Bioengineering Graduate Program \\ Head, Division of Biomedical Engineering}
+\newcommand{\dedicate}{\textit{To My Beloved }}
 
 
 \begin{document}
@@ -22,19 +27,22 @@
 \pagestyle{plain}
 \setcounter{page}{1}
 \addcontentsline{toc}{chapter}{Title Page}
-\input{1_title}
+\include{1_title}
 
 \newpage
 \addcontentsline{toc}{chapter}{Authorization Page}
-\input{2_authorization}
+\include{2_authorization}
 
 \newpage
 \addcontentsline{toc}{chapter}{Signature Page}
-\input{3_signature}
+\include{3_signature}
+
+\newpage
+\include{4_dedicate}
 
 \newpage
 \addcontentsline{toc}{chapter}{Acknowledgments}
-\input{4_acknowledgement}
+\include{5_acknowledgement}
 
 \newpage
 \addcontentsline{toc}{chapter}{Table of Contents}
@@ -50,20 +58,26 @@
 
 \newpage
 \addcontentsline{toc}{chapter}{Abstract}
-\input{abstract}
+\include{abstract}
+
+\newpage
+\addcontentsline{toc}{chapter}{Abbreviations}
+\printnomenclature[1in]
 
 \newpage
 \pagenumbering{arabic}
 \pagestyle{plain}
 \setcounter{page}{1}
-\input{chapter1}
-\input{chapter2}
-\input{chapter3}
-\input{chapter4}
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+\include{chapter5}
+\include{chapter6}
 
 \newpage
-\addcontentsline{toc}{chapter}{References}
-\input{reference}
+\addcontentsline{toc}{chapter}{\numberline{7}References}
+\include{reference}
 
 \newpage
 \addcontentsline{toc}{chapter}{Appendix}
@@ -71,8 +85,8 @@
 \input{appendix1}
 
 \newpage
-\addcontentsline{toc}{chapter}{Publications}
+\addcontentsline{toc}{chapter}{\numberline{8}List of Publications}
 \appendix
-\input{publication}
+\include{publication}
 
 \end{document}
