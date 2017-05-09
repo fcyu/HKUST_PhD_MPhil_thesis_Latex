@@ -1,24 +1,31 @@
+%!TEX program = xelatex
 \documentclass[12pt,a4paper]{report}
 
 \usepackage{thesis}
-\usepackage{graphicx,float,amsmath,epstopdf,multirow}
+\usepackage{lmodern}
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
 \usepackage[left=2.5cm,top=2.5cm,right=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{nomencl}
 \makenomenclature
-\renewcommand{\nomname}{Abbreviations}
+\renewcommand{\nomname}{ABBREVIATIONS}
+
+\usepackage{tocloft}
+\renewcommand{\cftchapfont}{}
+\renewcommand{\cftchappagefont}{}
+\renewcommand{\cftdot}{}
 
 \newcommand{\thesistitle}{This is a title}
 \newcommand{\thesisauthor}{Who Am I}
 \newcommand{\programname}{Bioengineering Graduate Program}
-\newcommand{\departmentname}{Division of Biomedical Engineering}
-\newcommand{\thesisdate}{November 2014}
-\newcommand{\signdate}{November 2014}
+\newcommand{\departmentname}{Division of Biomedical Engineering, HKUST}
+\newcommand{\thesisdate}{May 2017}
+\newcommand{\signdate}{May 2017}
 \newcommand{\thesisdegree}{PhD}
+\newcommand{\dedicate}{\textit{To Somebogy}}
 \newcommand{\supervisorinfo}{Prof. ONE, Thesis Supervisor \\ Department of Electronic and Computer Engineering}
 \newcommand{\cosupervisorinfo}{Prof. TWO, Thesis Co-Supervisor \\ Department of Electronic and Computer Engineering}
 \newcommand{\depheadinfo}{Prof. BIG \\ Program Director, Bioengineering Graduate Program \\ Head, Division of Biomedical Engineering}
-\newcommand{\dedicate}{\textit{To My Beloved }}
 
 
 \begin{document}
@@ -76,17 +83,17 @@
 \include{chapter6}
 
 \newpage
-\addcontentsline{toc}{chapter}{\numberline{7}References}
+\addcontentsline{toc}{chapter}{Reference}
+\bibliographystyle{IEEEtranN}
 \include{reference}
+
+\newpage
+\addcontentsline{toc}{chapter}{Publication}
+\include{publication}
 
 \newpage
 \addcontentsline{toc}{chapter}{Appendix}
 \appendix
-\input{appendix1}
-
-\newpage
-\addcontentsline{toc}{chapter}{\numberline{8}List of Publications}
-\appendix
-\include{publication}
+\include{appendix1}
 
 \end{document}
